@@ -2,13 +2,13 @@ import React from 'react';
 import Main from './pages/Main';
 import GlobalStyle from './styled/GlobalStyle';
 // import Category from './pages/Category';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import CategoryDetail from './pages/CategoryDetail';
+import { HashRouter, Routes, Route } from 'react-router-dom';
+// import CategoryDetail from './pages/CategoryDetail';
 const App = () => {
   return (
     <div className='wrap' style={{ position: "relative" }}>
       <GlobalStyle />
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path="/" index element={<Main />} />
           {/* <Route path="category">
@@ -17,7 +17,7 @@ const App = () => {
           </Route> */}
           {/* <Route path="*" element={<NotFiles />} /> */}
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 };
