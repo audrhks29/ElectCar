@@ -1,22 +1,28 @@
 import React from 'react';
-import Main from './pages/Main';
+import Home from './pages/Home';
+import TamlaIsCar from './pages/TamlaIsCar';
 import GlobalStyle from './styled/GlobalStyle';
-// import Category from './pages/Category';
-import { HashRouter, Routes, Route } from 'react-router-dom';
-// import CategoryDetail from './pages/CategoryDetail';
+import CommonHeader from './components/CommonHeader';
+import CommonFooter from './components/CommonFooter';
+import { Routes, Route, HashRouter } from 'react-router-dom';
+import NoticeList from './pages/NoticeList';
+import NoticeDetail from './pages/NoticeDetail';
+
 const App = () => {
   return (
     <div className='wrap' style={{ position: "relative" }}>
       <GlobalStyle />
       <HashRouter>
+        <CommonHeader />
         <Routes>
-          <Route path="/" index element={<Main />} />
-          {/* <Route path="category">
-            <Route element={<Category />} />
-            <Route path=":CategoryId" element={<CategoryDetail />} />
-          </Route> */}
-          {/* <Route path="*" element={<NotFiles />} /> */}
+          <Route path="" index element={<Home />} />
+          <Route path="/info" element={<TamlaIsCar />} />
+          <Route path="noticeList">
+            <Route index element={<NoticeList />} />
+            <Route path=":noticeID" element={<NoticeDetail />} />
+          </Route>
         </Routes>
+        <CommonFooter />
       </HashRouter>
     </div>
   );

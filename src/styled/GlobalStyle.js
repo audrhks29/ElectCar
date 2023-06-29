@@ -7,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: 16px;
     line-height: 1.6;
     font-family: 'Noto Sans KR', sans-serif;
-    color:#333;
+    color:#000;
     letter-spacing :-1px
   }
   a{

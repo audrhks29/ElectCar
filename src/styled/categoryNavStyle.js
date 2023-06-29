@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const Category = styled.ul`
-    margin-bottom:30px;
     display: flex;
     justify-content: space-around;
     border-top: 1px solid #ccc;

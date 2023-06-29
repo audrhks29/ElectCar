@@ -1,23 +1,5 @@
 import styled from 'styled-components'
 
-export const Inner = styled.div`
-    width: 1200px;
-    margin: auto;
-    h4{
-        font-size:45px;
-        font-weight:600;
-        text-align:center;
-        padding: 30px 0;
-    }
-`
-export const ItemList = styled.ul`
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    img{
-        width:384px;
-    }
-`
 export const PopUp = styled.div`
     width: 1200px;
     margin: auto;
@@ -31,14 +13,29 @@ export const PopUp = styled.div`
     background:white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 `
+
 export const PopUpLeft = styled.div`
     width: 720px;
+    /* position: relative; */
+    box-sizing: border-box;
+    height: 100%;
     img{
         display:block;
         width: 580px;
         margin: 70px auto;
     }
+    .swiper-button-prev,.swiper-button-next{
+        color: black;
+    }
+    .swiper-button-prev::after,.swiper-button-next::after{
+        font-size:30px;
+    }
+    .swiper-button-prev.swiper-button-disabled,
+    .swiper-button-next.swiper-button-disabled{
+        display: none;
+    }
 `
+
 export const PopUpRight = styled.div`
     padding: 60px;
     width: 480px;
