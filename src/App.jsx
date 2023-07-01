@@ -26,7 +26,7 @@ const App = () => {
   return (
     <div className='wrap' style={{ position: "relative" }}>
       <GlobalStyle />
-      <BrowserRouter basename="/ElectCar/dist">
+      <BrowserRouter basename="/ElectCar/dist/">
         <ScrollToTop />
         <CommonHeader />
         <Routes>
