@@ -30,7 +30,7 @@ const App = () => {
     <div className='wrap' style={{ position: "relative" }}>
 
       <GlobalStyle />
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <ScrollToTop />
         <CommonHeader />
         <Routes>
