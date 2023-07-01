@@ -3,9 +3,9 @@ import styled, { keyframes } from 'styled-components';
 import { MainArticleTextBox } from './homeStyle';
 
 const slideImages = [
-  '/images/main_slider_1.jpg',
-  '/images/main_slider_2.jpg',
-  '/images/main_slider_3.jpg',
+  './images/main_slider_1.jpg',
+  './images/main_slider_2.jpg',
+  './images/main_slider_3.jpg',
 ];
 
 const SlideShowContainer = styled.div`
