@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const slideImages = [
-    './images/gnb_slider_1.jpg',
-    './images/gnb_slider_2.jpg',
-    './images/gnb_slider_3.jpg',
+    'gnb_slider_1.jpg',
+    'gnb_slider_2.jpg',
+    'gnb_slider_3.jpg',
 ];
 
 const SlideShowContainer = styled.div`
@@ -55,7 +55,7 @@ const NavigationBarLeft = () => {
             {slideImages.map((image, index) => (
                 <SlideShowImage
                     key={index}
-                    src={image}
+                    src={`${process.env.PUBLIC_URL}/images/${image}`}
                     alt={`Slide ${index + 1}`}
                     active={index === activeIndex}
                 />
