@@ -55,7 +55,7 @@ const NavigationBarLeft = () => {
             {slideImages.map((image, index) => (
                 <SlideShowImage
                     key={index}
-                    src={`${process.env.PUBLIC_URL}/images/${image}`}
+                    src={`/assets/images/${image}`}
                     alt={`Slide ${index + 1}`}
                     active={index === activeIndex}
                 />
