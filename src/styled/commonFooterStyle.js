@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Footer = styled.div`
-padding: 60px 0;
+    padding: 60px 0;
     background: #303030;
     color:white;
     .inner{
@@ -31,6 +31,7 @@ padding: 60px 0;
                     font-size: 18px;
                     padding: 0 20px;
                     position: relative;
+                      
                     &:before{
                         content: '·';
                         position: absolute;
@@ -38,6 +39,9 @@ padding: 60px 0;
                     }
                     &:nth-child(1){
                         &:before{display: none;}
+                    }
+                    a{
+                        color:white;  
                     }
                 }
             }

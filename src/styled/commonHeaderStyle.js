@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 export const Header = styled.div`
     position: absolute;
@@ -18,27 +18,43 @@ export const Header = styled.div`
             font-size: 30px;
             z-index:20;
         }
+        .bgbg{
+            background-color: #000000;
+            height: 100%;
+        }
 `
-
+const slideDownAnimation = keyframes`
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+`;
 export const NavigationBar = styled.div`
-    max-width:1920px;
+    max-width: 100%;
     background: white;
     display: flex;
+    justify-content:center;
     margin: 0 auto;
     box-sizing: border-box;
     position: absolute;
-    top:0;
-    left:50%;
-    transform: translateX(-50%);
+    top: 0;
+    left: 0; 
+    right: 0; 
     height: 700px;
     z-index: 10;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);    
-`
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: transform 1s ease;
+        &.show {
+            animation: ${slideDownAnimation} 1s ease forwards;
+        }
+`;
 
-export const NavigationBarLeft = styled.div`
-    width:960px;
-`
-
+// export const NavigationBarLeft = styled.div`
+//     width:960px;
+//     /* position: relative; */
+// `
 export const NavigationBarRight = styled.div`
     width: 960px;
     height: 700px;

@@ -10,15 +10,8 @@ import { NoticeDetailList } from '../styled/noticeDetailStyle';
 import NoticeTopPined from '../components/NoticeTopPined';
 const NoticeDetail = memo(() => {
     const { noticeID } = useParams();
-    console.log(noticeID);
     const parseID = parseInt(noticeID, 10)
-    console.log(parseID);
-    console.log(typeof (parseID));
     const [data, setData] = useState(dataList[parseID - 1]);
-    // console.log(dataList[2]);
-
-    console.log(data);
-    console.log(data.img);
     const { title, date, img, desc } = data
     return (
         <NoticeDetailList>
@@ -34,11 +27,10 @@ const NoticeDetail = memo(() => {
                     >
                         {
                             img.map((item, index) => (
-                                <SwiperSlide><img key={index} src={item} alt="" /></SwiperSlide>)
+                                <SwiperSlide key={index}><img src={item} alt="" /></SwiperSlide>)
                             )
                         }
                     </Swiper>
-                    <p>{desc}</p>
                     {
                         desc.split('\n').map((item, index) => (
                             <p key={index}>{item}</p>

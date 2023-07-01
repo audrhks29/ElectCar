@@ -10,7 +10,7 @@ export const NoticeDetailList = styled.div`
             padding-bottom: 60px;
             width: 100%;
             border-top: 1px solid #000;
-            border-bottom: 1px solid #000;
+            /* border-bottom: 1px solid #000; */
             strong{
                 font-size: 30px;
                 font-weight:600;
