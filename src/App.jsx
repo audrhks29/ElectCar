@@ -26,7 +26,7 @@ const App = () => {
   return (
     <div className='wrap' style={{ position: "relative" }}>
       <GlobalStyle />
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <BrowserRouter basename="/ElectCar/dist">
         <ScrollToTop />
         <CommonHeader />
         <Routes>
