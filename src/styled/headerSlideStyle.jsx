@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const slideImages = [
-    '${process.env.PUBLIC_URL}/images/gnb_slider_1.jpg',
-    '${process.env.PUBLIC_URL}/images/gnb_slider_2.jpg',
-    '${process.env.PUBLIC_URL}/images/gnb_slider_3.jpg',
+    'ElectCar/dist/images/gnb_slider_1.jpg',
+    'ElectCar/dist/images/gnb_slider_2.jpg',
+    'ElectCar/dist/images/gnb_slider_3.jpg',
 ];
+
 const SlideShowContainer = styled.div`
   position: relative;
   width: 960px;
@@ -36,7 +37,7 @@ const scaleAnimation = keyframes`
 
 const NavigationBarLeft = () => {
     const [activeIndex, setActiveIndex] = useState(0);
-    console.log(process.env.PUBLIC_URL);
+
     useEffect(() => {
         // 이미지 변경을 위한 타이머 설정
         const timer = setInterval(() => {
@@ -54,7 +55,7 @@ const NavigationBarLeft = () => {
             {slideImages.map((image, index) => (
                 <SlideShowImage
                     key={index}
-                    src={`${process.env.PUBLIC_URL}/images/${image}`}
+                    src={image}
                     alt={`Slide ${index + 1}`}
                     active={index === activeIndex}
                 />
