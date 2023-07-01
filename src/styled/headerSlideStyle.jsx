@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const slideImages = [
-  '/dist/images/gnb_slider_1.jpg',
-  '/dist/images/gnb_slider_2.jpg',
-  '/dist/images/gnb_slider_3.jpg',
+  '/ElectCar/dist/images/gnb_slider_1.jpg',
+  '/ElectCar/dist/images/gnb_slider_2.jpg',
+  '/ElectCar/dist/images/gnb_slider_3.jpg',
 ];
 
 const SlideShowContainer = styled.div`
