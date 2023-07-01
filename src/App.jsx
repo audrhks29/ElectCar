@@ -24,8 +24,6 @@ const ScrollToTop = () => {
   return null;
 };
 const App = () => {
-
-
   return (
     <div className='wrap' style={{ position: "relative" }}>
 
