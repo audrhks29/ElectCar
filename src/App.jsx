@@ -30,7 +30,7 @@ const App = () => {
         <ScrollToTop />
         <CommonHeader />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" index element={<Home />} />
           <Route path="/info" element={<TamlaIsCar />} />
           <Route path="/noticeList" element={<NoticeList />} />
           <Route path="/noticeList/:noticeID" element={<NoticeDetail />} />
