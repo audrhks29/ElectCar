@@ -18,7 +18,7 @@ const CommonHeader = () => {
     return (
         <Header>
             <div className='inner'>
-                <h1 onClick={() => navToggle()}><Link to={"/"}>{location.pathname === "/" ? <img src="/images/logo.png" alt="" /> : <img src="/images/logo_b.png" alt="" />}</Link> </h1>
+                <h1 onClick={() => navToggle()}><Link to={"/"}>{location.pathname === "/" ? <img src="./images/logo.png" alt="" /> : <img src="./images/logo_b.png" alt="" />}</Link> </h1>
                 <i onClick={() => navToggle()} style={{ color: location.pathname === "/" && isNavToggle === false ? "white" : "black" }}><GiHamburgerMenu /></i>
             </div>
             {
