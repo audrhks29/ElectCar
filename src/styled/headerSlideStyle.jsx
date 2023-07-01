@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const slideImages = [
-    'gnb_slider_1.jpg',
-    'gnb_slider_2.jpg',
-    'gnb_slider_3.jpg',
+  '/dist/images/gnb_slider_1.jpg',
+  '/dist/images/gnb_slider_2.jpg',
+  '/dist/images/gnb_slider_3.jpg',
 ];
 
 const SlideShowContainer = styled.div`
@@ -36,32 +36,32 @@ const scaleAnimation = keyframes`
 `;
 
 const NavigationBarLeft = () => {
-    const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-    useEffect(() => {
-        // 이미지 변경을 위한 타이머 설정
-        const timer = setInterval(() => {
-            setActiveIndex((prevIndex) => (prevIndex + 1) % slideImages.length);
-        }, 5000);
+  useEffect(() => {
+    // 이미지 변경을 위한 타이머 설정
+    const timer = setInterval(() => {
+      setActiveIndex((prevIndex) => (prevIndex + 1) % slideImages.length);
+    }, 5000);
 
-        // 컴포넌트 언마운트 시 타이머 해제
-        return () => {
-            clearInterval(timer);
-        };
-    }, []);
+    // 컴포넌트 언마운트 시 타이머 해제
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
-    return (
-        <SlideShowContainer>
-            {slideImages.map((image, index) => (
-                <SlideShowImage
-                    key={index}
-                    src={`/assets/images/${image}`}
-                    alt={`Slide ${index + 1}`}
-                    active={index === activeIndex}
-                />
-            ))}
-        </SlideShowContainer>
-    );
+  return (
+    <SlideShowContainer>
+      {slideImages.map((image, index) => (
+        <SlideShowImage
+          key={index}
+          src={image}
+          alt={`Slide ${index + 1}`}
+          active={index === activeIndex}
+        />
+      ))}
+    </SlideShowContainer>
+  );
 };
 
 export default NavigationBarLeft;
