@@ -91,7 +91,7 @@ const slideImages = [
 #### 기타사항
 1. `<BrouwserRouter>` 대신 `<HashRouter>`를 사용하면 깃허브페이지에서 정상적으로 구동할 수 있으나, 주소창 앞에 #이 붙으며 `location.pathname`을 사용할 수 없게 됌
 
-
+<hr>
 
 ## 미수정 오류
 ### 오류사항
