@@ -78,6 +78,7 @@ const slideImages = [
 
 ```
 불러오려는 이미지 주소 앞에 `import.meta.env.BASE_URL`추가
+주의해야 할 점은 creat-react-app으로 build한 것과 vite로 build한 것의 절대경로 설정방법에 차이가 있다.
 
 5. index.html(dist폴더 내부)
 ```html
