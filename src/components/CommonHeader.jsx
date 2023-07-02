@@ -1,12 +1,15 @@
 import React, { memo, useEffect, useState } from 'react';
+
 import { Header, NavigationBar, NavigationBarRight } from '../styled/commonHeaderStyle';
+import NavigationBarLeft from '../styled/headerSlideStyle';
 
 import { GiHamburgerMenu } from 'react-icons/gi';
+
 import { Link, useLocation } from 'react-router-dom';
-import NavigationBarLeft from '../styled/headerSlideStyle';
+
 const CommonHeader = () => {
     const location = useLocation();
-
+    console.log(location.pathname);
     const [isNavToggle, setIsNavToggle] = useState(false);
     const [onListClass, setOnListClass] = useState('');
     const navToggle = () => {

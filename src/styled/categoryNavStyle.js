@@ -10,7 +10,7 @@ export const Category = styled.ul`
         font-weight:600;
         cursor: pointer;
         padding: 20px 0;
-        &:hover{
+        &:hover, a:hover{
             color: #007FA8; 
         }
         &.on{

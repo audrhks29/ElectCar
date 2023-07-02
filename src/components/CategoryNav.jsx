@@ -1,6 +1,10 @@
 import React, { memo, useState } from 'react';
+
 import { Category, Search } from '../styled/categoryNavStyle';
+
 import { FiSearch } from 'react-icons/fi';
+
+import { Link } from 'react-router-dom';
 const CategoryNav = memo(({ onListClick, onList, isShowSearchBox }) => {
     return (
         <Category>
@@ -10,7 +14,7 @@ const CategoryNav = memo(({ onListClick, onList, isShowSearchBox }) => {
             <li onClick={() => onListClick(4, event)} className={onList === 4 ? 'on' : ''}>충전 및 문제 대처법</li>
             <li onClick={() => onListClick(5, event)} className={onList === 5 ? 'on' : ''}>FAQ</li>
             <li onClick={() => onListClick(6, event)} className={onList === 6 ? 'on' : ''}>제주 전기차 충전소 찾기</li>
-            <li onClick={() => onListClick(7, event)} className={onList === 7 ? 'on' : ''}>제주 전기차 뉴스</li>
+            <li><Link to={'/noticeList'} >제주 전기차 뉴스</Link></li>
             <Search onClick={isShowSearchBox} ><i><FiSearch /></i>검색</Search>
         </Category>
     );

@@ -1,9 +1,24 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
+
 import { PopUp, PopUpLeft, PopUpRight } from '../styled/popUpStyle';
+
 import { GrClose } from 'react-icons/gr';
+
 import PopupSlide from './PopupSlide';
+
 const PopupCon = memo(({ selectedIndex, closePopup }) => {
-    const { img, category, MainTitle, like, hashTag } = selectedIndex
+    const [isLike, setIsLike] = useState(selectedIndex.like);
+    const [btnColor, setBtnColor] = useState(true);
+    const toggleLike = () => {
+        setBtnColor(!btnColor)
+        if (btnColor) {
+            setIsLike(isLike + 1);
+        }
+        else {
+            setIsLike(isLike - 1);
+        }
+    }
+    const { img, category, MainTitle, hashTag } = selectedIndex
     return (
         <PopUp>
             <PopUpLeft>
@@ -17,7 +32,7 @@ const PopupCon = memo(({ selectedIndex, closePopup }) => {
                             <p className='title2' key={index}>{item}</p>
                         ))
                     }
-                    <div><button>♥</button><span>{like}</span></div>
+                    <div><button onClick={toggleLike} style={{ color: btnColor ? "white" : "red" }}>♥</button><span>{isLike}</span></div>
                 </div>
                 <div className="tagBox">
                     {

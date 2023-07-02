@@ -1,4 +1,4 @@
-import { Swiper, SwiperSlide } from "swiper/react" // basic
+import { Swiper, SwiperSlide } from "swiper/react"
 import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper"
 import "swiper/scss"
 import "swiper/scss/navigation"
@@ -12,8 +12,8 @@ const PopupSlide = ({ img }) => {
             navigation
             pagination={{ clickable: true }}
         >
-            {img.map(item => (
-                <SwiperSlide><img src={item} alt="" /></SwiperSlide>))}
+            {img.map((item, idx) => (
+                <SwiperSlide key={idx}><img src={item} alt="" /></SwiperSlide>))}
         </Swiper>
     );
 };

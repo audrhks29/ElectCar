@@ -1,5 +1,7 @@
 import React, { memo } from 'react';
+
 import { Link } from 'react-router-dom';
+
 import { Footer } from '../styled/commonFooterStyle';
 
 const CommonFooter = memo(() => {
@@ -7,7 +9,7 @@ const CommonFooter = memo(() => {
         <Footer>
             <div className="inner">
                 <p className='logo'>
-                    <img src="./images/logo.png" alt="" />
+                    <Link to={'/'}><img src="./images/logo.png" alt="" /></Link>
                 </p>
                 <div className='footerMenu'>
                     <ul>

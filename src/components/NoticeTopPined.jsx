@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+
 import { PinedContent } from '../styled/noticeTopPinedStyle';
 
 const NoticeTopPined = memo(() => {

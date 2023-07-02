@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
 import GlobalStyle from './styled/GlobalStyle';
+
 import CommonHeader from './components/CommonHeader';
 import CommonFooter from './components/CommonFooter';
 

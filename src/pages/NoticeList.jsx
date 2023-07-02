@@ -1,12 +1,17 @@
-import React, { memo } from 'react';
-import newsData from '../assets/newsData.json'
+import React, { memo, useEffect } from 'react';
+// import newsData from '../assets/newsData.json'
 import { useState } from 'react';
 import { Container, Paginate, Table } from '../styled/noticeListStyle';
 import { HiOutlineChevronDoubleLeft, HiOutlineChevronDoubleRight, HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi'
 import { Link } from 'react-router-dom';
 import NoticeTopPined from '../components/NoticeTopPined';
-const NoticeList = memo(() => {
-    const [data, setData] = useState(newsData);
+import { useAxios } from '../hooks/useAxios';
+const NoticeList = () => {
+    const { state: newsData, error, loading } = useAxios("https://gist.githubusercontent.com/audrhks29/4369a59452ed3e8967052a7ac98686b5/raw/0cfe0663807f3aedcb658da3fadac1665e048444/newsData.json")
+    const [data, setData] = useState([newsData]);
+    useEffect(() => {
+        setData(newsData)
+    }, [newsData])
     const sortedData = [...data].sort((a, b) => b.id - a.id);
     const pagePerData = 5;
     const [currentPage, setCurrentPage] = useState(1);
@@ -29,7 +34,6 @@ const NoticeList = memo(() => {
         if (currentPage > 1) { setCurrentPage(currentPage - 1); }
     }
     const lastPageItemCount = data.length % pagePerData;
-    console.log(lastPageItemCount);
     return (
         <Container>
             <div className="inner">
@@ -85,6 +89,6 @@ const NoticeList = memo(() => {
             </div>
         </Container >
     );
-});
+};
 
 export default NoticeList;

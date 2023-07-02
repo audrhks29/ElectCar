@@ -1,14 +1,19 @@
 import React, { memo, useEffect, useState } from 'react';
+
 import { Inner } from '../styled/homeStyle';
 import { SearchBox, ItemList } from '../styled/contentsStyle';
+
 import CategoryNav from './CategoryNav';
 import { FiPlus, FiSearch } from 'react-icons/fi';
-const Contents = memo(({ dataList, openPopup }) => {
-    const [filteredData, setFilteredData] = useState(dataList);
-    const [onList, setOnList] = useState(1); // 선택된 category 메뉴 번호
+const Contents = ({ dataList, openPopup }) => {
+    const [filteredData, setFilteredData] = useState([]);
+    const [onList, setOnList] = useState(1);
     const [onListText, setOnListText] = useState('인기 콘텐츠');
     const [inputText, setInputText] = useState('');
     const [ShowSearchBox, setShowSearchBox] = useState(false);
+    useEffect(() => {
+        setFilteredData(dataList)
+    }, [dataList])
     const onListClick = (num, event) => {
         setOnList(num);
         const value = event.target.textContent;
@@ -69,6 +74,6 @@ const Contents = memo(({ dataList, openPopup }) => {
             </Inner>
         </div>
     );
-});
+};
 
 export default Contents;
