@@ -9,7 +9,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const CommonHeader = () => {
     const location = useLocation();
-    console.log(location.pathname);
+    // console.log(location.pathname);
     const [isNavToggle, setIsNavToggle] = useState(false);
     const [onListClass, setOnListClass] = useState('');
     const navToggle = () => {
@@ -21,7 +21,7 @@ const CommonHeader = () => {
     return (
         <Header>
             <div className='inner'>
-                <h1 onClick={() => navToggle()}><Link to={"/"}>{location.pathname === "/" ? <img src="./images/logo.png" alt="" /> : <img src="./images/logo_b.png" alt="" />}</Link> </h1>
+                <h1 onClick={() => navToggle()}><Link to={"/"}>{location.pathname === "/" ? <img src={import.meta.env.BASE_URL + "images/logo.png"} alt="" /> : <img src={import.meta.env.BASE_URL + "images/logo_b.png"} alt="" />}</Link> </h1>
                 <i onClick={() => navToggle()} style={{ color: location.pathname === "/" && isNavToggle === false ? "white" : "black" }}><GiHamburgerMenu /></i>
             </div>
             {
