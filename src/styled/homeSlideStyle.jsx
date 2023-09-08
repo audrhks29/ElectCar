@@ -29,12 +29,8 @@ const SlideShowImage = styled.img`
 `;
 
 const scaleAnimation = keyframes`
-  from {
-    transform: scale(1.2);
-  }
-  to {
-    transform: scale(1.0);
-  }
+  from {transform: scale(1.2);}
+  to {transform: scale(1.0);}
 `;
 
 const MainArticle = () => {
@@ -54,14 +50,16 @@ const MainArticle = () => {
 
   return (
     <SlideShowContainer>
-      {slideImages.map((image, index) => (
-        <SlideShowImage
-          key={index}
-          src={image}
-          alt={`Slide ${index + 1}`}
-          active={index === activeIndex}
-        />
-      ))}
+      {
+        slideImages.map((image, index) => (
+          <SlideShowImage
+            key={index}
+            src={image}
+            alt={`Slide ${index + 1}`}
+            active={index === activeIndex}
+          />
+        ))
+      }
       <MainArticleTextBox>
         <h2>탐라는 전기차</h2>
         <h3>전기차와 함께 제주 여행을 준비하는 당신에게<br />

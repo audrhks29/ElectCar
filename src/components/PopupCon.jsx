@@ -1,24 +1,20 @@
 import React, { memo } from 'react';
 import { PopUp, PopUpLeft, PopUpRight } from '../styled/popUpStyle';
-import { GrClose } from 'react-icons/gr';
-import PopupSlide from './PopupSlide';
 import { useSelector, useDispatch } from 'react-redux';
 import { isLikeToggle, isPopupToggle } from '../store/modules/stateSlice';
+import { GrClose } from 'react-icons/gr';
+import PopupSlide from './PopupSlide';
 
 const PopupCon = memo(() => {
     const { selectContent, likeCounter } = useSelector(state => state.stateR);
     const dispatch = useDispatch()
-    const handleIsPopupToggle = () => {
-        dispatch(isPopupToggle())
-    }
-    const toggleLike = () => {
-        dispatch(isLikeToggle())
-    }
+    const handleIsPopupToggle = () => dispatch(isPopupToggle())
+    const toggleLike = () => dispatch(isLikeToggle())
     const { img, category, MainTitle, hashTag, like } = selectContent
     return (
         <PopUp>
             <PopUpLeft>
-                <PopupSlide img={img} />
+                <PopupSlide />
             </PopUpLeft>
             <PopUpRight>
                 <div className="right_top">

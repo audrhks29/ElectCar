@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
-    popupState: false,
-    selectContent: [],
-    likeCounter: 0
+    popupState: false, // 팝업 표시 유무
+    selectContent: [], // 선택한 데이터 
+    likeCounter: 0,
+    searchBox: false, //검색창 표시 유무
 }
 export const stateSlice = createSlice({
     name: 'state',
@@ -19,9 +20,12 @@ export const stateSlice = createSlice({
             state.likeCounter % 2 == 1
                 ? state.selectContent.like += 1
                 : state.selectContent.like -= 1;
+        },
+        isSearchBoxToggle(state, action) {
+            state.searchBox = !state.searchBox
         }
     }
 })
 
-export const { isPopupToggle, isLikeToggle } = stateSlice.actions
+export const { isPopupToggle, isLikeToggle, isSearchBoxToggle } = stateSlice.actions
 export default stateSlice.reducer

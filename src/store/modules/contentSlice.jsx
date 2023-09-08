@@ -1,7 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 const initialState = {
-    contentData: []
+    contentData: [],
+    itemAmount: 6, // 처음 표시되는 아이템 갯수
+    onListNum: 1,
+    onListText: "인기 콘텐츠"
 }
 export const getContentData = createAsyncThunk(
     'content/getContentData',
@@ -14,7 +17,15 @@ export const contentSlice = createSlice({
     name: 'content',
     initialState: initialState,
     reducers: {
-
+        increaseItemAmount(state, action) {
+            state.itemAmount += 6
+        },
+        changeCategory(state, action) {
+            state.onListText = action.payload
+        },
+        changeOnListNum(state, action) {
+            state.onListNum = action.payload
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -31,5 +42,5 @@ export const contentSlice = createSlice({
     }
 })
 
-export const { } = contentSlice.actions
+export const { increaseItemAmount, changeCategory, changeOnListNum } = contentSlice.actions
 export default contentSlice.reducer

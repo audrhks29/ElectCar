@@ -1,64 +1,63 @@
 import React, { useEffect, useState } from 'react';
 import { Inner } from '../styled/homeStyle';
-import { SearchBox, ItemList } from '../styled/contentsStyle';
-import CategoryNav from './CategoryNav';
-import { FiPlus, FiSearch } from 'react-icons/fi';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { isPopupToggle } from '../store/modules/stateSlice';
+import { changeCategory, increaseItemAmount } from '../store/modules/contentSlice';
+import { onChangeKeyword } from '../store/modules/searchSlice';
+import { SearchBox, ItemList } from '../styled/contentsStyle';
+import { FiPlus, FiSearch } from 'react-icons/fi';
+import CategoryNav from './CategoryNav';
 const Contents = ({ dataList }) => {
+    const { itemAmount, onListNum, onListText } = useSelector(state => state.contentR)
+    const { searchBox } = useSelector(state => state.stateR)
+    const { keywords } = useSelector(state => state.searchR)
     const dispatch = useDispatch();
     const [filteredData, setFilteredData] = useState([]);
-    const [onList, setOnList] = useState(1);
-    const [onListText, setOnListText] = useState('인기 콘텐츠');
-    const [inputText, setInputText] = useState('');
-    const [ShowSearchBox, setShowSearchBox] = useState(false);
+    // const [onList, setOnList] = useState(1);
+    // const [onListText, setOnListText] = useState('인기 콘텐츠');
     useEffect(() => {
         setFilteredData(dataList)
     }, [dataList])
-    const handleIsPopupToggle = (item) => {
-        dispatch(isPopupToggle(item))
-    }
+    const handleIsPopupToggle = (item) => dispatch(isPopupToggle(item))
+    const handleIncreaseItemAmount = () => dispatch(increaseItemAmount())
     const onListClick = (num, event) => {
-        setOnList(num);
+        // 리스트 클릭 시 카테고리 설정
+        // setOnList(num);
         const value = event.target.textContent;
-        setOnListText(value);
-        if (value === "인기 콘텐츠") {
+        // setOnListText(value);
+        dispatch(changeCategory(value))
+        if (onListText === "인기 콘텐츠") {
             setFilteredData(dataList);
         } else {
-            setFilteredData(dataList.filter(item => item.category === value));
+            setFilteredData(dataList.filter(item => item.category === onListText));
         }
     };
     const onChange = (e) => {
         const inputValue = e.target.value;
-        setInputText(inputValue);
+        dispatch(onChangeKeyword(inputValue))
     };
     const onSearch = () => {
+        // 검색 시 카테고리 및 검색어에 맞는 데이터 출력
         if (onListText === "인기 콘텐츠") {
-            setFilteredData(dataList.filter(item => item.MainTitle.includes(inputText)));
+            setFilteredData(dataList.filter(
+                item => item.MainTitle.includes(keywords)
+            ));
         } else {
-            setFilteredData(dataList.filter(item => item.MainTitle.includes(inputText) && item.category === onListText));
+            setFilteredData(dataList.filter(
+                item => item.MainTitle.includes(keywords)
+                    && item.category === onListText)
+            );
         }
     }
-    const isShowSearchBox = () => {
-        setShowSearchBox(!ShowSearchBox);
-    }
-
-    const [ItemCount, setItemCount] = useState(6)// 보여질 아이템 갯수
-    useEffect(() => {
-        setItemCount(6);
-    }, [filteredData])
-    const ItemCountChange = () => {
-        setItemCount(ItemCount + 6);
-    }
-    const filteredItems = filteredData.slice(0, ItemCount);
+    const filteredItems = filteredData.slice(0, itemAmount);
     return (
         <div className='contents' style={{ paddingTop: 40, paddingBottom: 40 }}>
             <Inner>
                 <h4>전기차 이용법부터 알찬 꿀팁까지 모두 알려드려요!</h4>
-                <CategoryNav dataList={dataList} onListClick={onListClick} onList={onList} isShowSearchBox={isShowSearchBox} />
+                <CategoryNav dataList={dataList} onListClick={onListClick} />
                 {
-                    ShowSearchBox && <SearchBox>
-                        <input type="text" value={inputText} onChange={onChange} placeholder='검색어를 입력하세요' />
+                    searchBox && <SearchBox>
+                        <input type="text" value={keywords} onChange={onChange} placeholder='검색어를 입력하세요' />
                         <button type="button" onClick={onSearch}><i><FiSearch /></i></button>
                     </SearchBox>
                 }
@@ -75,10 +74,10 @@ const Contents = ({ dataList }) => {
                         ))
                     }
                     {
-                        ItemCount <= filteredData.length
+                        itemAmount <= filteredData.length
                             ? <div
                                 className="moreBtnWrap"
-                                onClick={ItemCountChange}
+                                onClick={handleIncreaseItemAmount}
                             >
                                 <i><FiPlus /></i>
                                 <button>더보기</button>
