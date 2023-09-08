@@ -1,24 +1,20 @@
-import React, { memo, useState } from 'react';
-
+import React, { memo } from 'react';
 import { PopUp, PopUpLeft, PopUpRight } from '../styled/popUpStyle';
-
 import { GrClose } from 'react-icons/gr';
-
 import PopupSlide from './PopupSlide';
+import { useSelector, useDispatch } from 'react-redux';
+import { isLikeToggle, isPopupToggle } from '../store/modules/stateSlice';
 
-const PopupCon = memo(({ selectedIndex, closePopup }) => {
-    const [isLike, setIsLike] = useState(selectedIndex.like);
-    const [btnColor, setBtnColor] = useState(true);
-    const toggleLike = () => {
-        setBtnColor(!btnColor)
-        if (btnColor) {
-            setIsLike(isLike + 1);
-        }
-        else {
-            setIsLike(isLike - 1);
-        }
+const PopupCon = memo(() => {
+    const { selectContent, likeCounter } = useSelector(state => state.stateR);
+    const dispatch = useDispatch()
+    const handleIsPopupToggle = () => {
+        dispatch(isPopupToggle())
     }
-    const { img, category, MainTitle, hashTag } = selectedIndex
+    const toggleLike = () => {
+        dispatch(isLikeToggle())
+    }
+    const { img, category, MainTitle, hashTag, like } = selectContent
     return (
         <PopUp>
             <PopUpLeft>
@@ -28,15 +24,29 @@ const PopupCon = memo(({ selectedIndex, closePopup }) => {
                 <div className="right_top">
                     <p className='title1'>{category}</p>
                     {
-                        selectedIndex && MainTitle.split('\n').map((item, index) => (
+                        MainTitle.split('\n').map((item, index) => (
                             <p className='title2' key={index}>{item}</p>
                         ))
                     }
-                    <div><button onClick={toggleLike} style={{ color: btnColor ? "white" : "red" }}>♥</button><span>{isLike}</span></div>
+                    <div>
+                        <button
+                            onClick={toggleLike}
+                            style={
+                                {
+                                    color: likeCounter % 2 == 0
+                                        ? "white"
+                                        : "red"
+                                }
+                            }
+                        >
+                            ♥
+                        </button>
+                        <span>{like}</span>
+                    </div>
                 </div>
                 <div className="tagBox">
                     {
-                        selectedIndex && hashTag.split('#').map((item, index) => (
+                        hashTag.split('#').map((item, index) => (
                             <span key={index}>#{item}</span>
                         ))
                     }
@@ -52,7 +62,9 @@ const PopupCon = memo(({ selectedIndex, closePopup }) => {
                         <img src="./images/icon_kakao.png" alt="" />
                     </div>
                 </div>
-                <div><i className='popUpCloseBtn' onClick={closePopup}><GrClose /></i></div>
+                <div onClick={handleIsPopupToggle}>
+                    <i className='popUpCloseBtn'><GrClose /></i>
+                </div>
             </PopUpRight>
         </PopUp>
     );

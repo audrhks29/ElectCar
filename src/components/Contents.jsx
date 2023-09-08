@@ -1,11 +1,12 @@
-import React, { memo, useEffect, useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import { Inner } from '../styled/homeStyle';
 import { SearchBox, ItemList } from '../styled/contentsStyle';
-
 import CategoryNav from './CategoryNav';
 import { FiPlus, FiSearch } from 'react-icons/fi';
-const Contents = ({ dataList, openPopup }) => {
+import { useDispatch } from 'react-redux';
+import { isPopupToggle } from '../store/modules/stateSlice';
+const Contents = ({ dataList }) => {
+    const dispatch = useDispatch();
     const [filteredData, setFilteredData] = useState([]);
     const [onList, setOnList] = useState(1);
     const [onListText, setOnListText] = useState('인기 콘텐츠');
@@ -14,6 +15,9 @@ const Contents = ({ dataList, openPopup }) => {
     useEffect(() => {
         setFilteredData(dataList)
     }, [dataList])
+    const handleIsPopupToggle = (item) => {
+        dispatch(isPopupToggle(item))
+    }
     const onListClick = (num, event) => {
         setOnList(num);
         const value = event.target.textContent;
@@ -62,13 +66,24 @@ const Contents = ({ dataList, openPopup }) => {
                     {
                         filteredItems.map((item, index) => (
                             <li key={index}>
-                                <img src={item.coverImg} alt="" onClick={() => openPopup(item)} />
+                                <img
+                                    src={item.coverImg}
+                                    alt=""
+                                    onClick={() => handleIsPopupToggle(item)}
+                                />
                             </li>
                         ))
                     }
                     {
-                        ItemCount <= filteredData.length ? <div className="moreBtnWrap" onClick={ItemCountChange}>
-                            <i><FiPlus /></i><button>더보기</button></div> : ""
+                        ItemCount <= filteredData.length
+                            ? <div
+                                className="moreBtnWrap"
+                                onClick={ItemCountChange}
+                            >
+                                <i><FiPlus /></i>
+                                <button>더보기</button>
+                            </div>
+                            : ""
                     }
                 </ItemList>
             </Inner>

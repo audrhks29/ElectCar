@@ -3,8 +3,10 @@ import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper"
 import "swiper/scss"
 import "swiper/scss/navigation"
 import "swiper/scss/pagination"
+import { useSelector } from "react-redux"
 SwiperCore.use([Navigation, Pagination, Autoplay]) // Swiper
-const PopupSlide = ({ img }) => {
+const PopupSlide = () => {
+    const { selectContent } = useSelector(state => state.stateR);
     return (
         <Swiper
             spaceBetween={0}
@@ -12,8 +14,12 @@ const PopupSlide = ({ img }) => {
             navigation
             pagination={{ clickable: true }}
         >
-            {img.map((item, idx) => (
-                <SwiperSlide key={idx}><img src={item} alt="" /></SwiperSlide>))}
+            {
+                selectContent.img.map((item, idx) => (
+                    <SwiperSlide key={idx}>
+                        <img src={item} alt="" />
+                    </SwiperSlide>))
+            }
         </Swiper>
     );
 };
