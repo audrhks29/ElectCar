@@ -3,7 +3,7 @@ const initialState = {
     popupState: false, // 팝업 표시 유무
     selectContent: [], // 선택한 데이터 
     likeCounter: 0,
-    searchBox: false, //검색창 표시 유무
+    searchBoxState: false, //검색창 표시 유무
 }
 export const stateSlice = createSlice({
     name: 'state',
@@ -22,7 +22,7 @@ export const stateSlice = createSlice({
                 : state.selectContent.like -= 1;
         },
         isSearchBoxToggle(state, action) {
-            state.searchBox = !state.searchBox
+            state.searchBoxState = !state.searchBoxState
         }
     }
 })

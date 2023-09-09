@@ -2,9 +2,19 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 const initialState = {
     contentData: [],
+    loading: true,
     itemAmount: 6, // 처음 표시되는 아이템 갯수
-    onListNum: 1,
-    onListText: "인기 콘텐츠"
+    onListNum: 1, // 카테고리 넘버
+    listItems: [
+        '인기 콘텐츠', // onListNum = 1
+        '전기차 소개', // onListNum = 2
+        '슬기로운 전기차 여행', // onListNum = 3
+        '충전 및 문제 대처법', // onListNum = 4
+        'FAQ', // onListNum = 5
+        '제주 전기차 충전소 찾기', // onListNum = 6
+    ],
+    filteredData: [],
+    slicedData: []
 }
 export const getContentData = createAsyncThunk(
     'content/getContentData',
@@ -20,11 +30,36 @@ export const contentSlice = createSlice({
         increaseItemAmount(state, action) {
             state.itemAmount += 6
         },
-        changeCategory(state, action) {
-            state.onListText = action.payload
-        },
+
         changeOnListNum(state, action) {
             state.onListNum = action.payload
+        },
+        changeFilteredData(state, action) {
+            if (state.onListNum === 1) {
+                state.filteredData = [...state.contentData]
+                console.log(state.contentData);
+            } else {
+                state.filteredData = state.contentData.filter(item =>
+                    item.category === state.listItems[state.onListNum - 1]
+                )
+                console.log(state.onListNum);
+                console.log(state.listItems[state.onListNum - 1]);
+            }
+            console.log(state.contentData);
+        },
+        changeSlicedData(state, action) {
+            state.slicedData = action.payload
+        },
+        changeSearchedData(state, action) {
+            if (state.onListNum === 1) {
+                state.slicedData = state.contentData.filter(
+                    item => item.MainTitle.includes(action.payload)
+                )
+            } else {
+                state.slicedData = state.contentData.filter(
+                    item => item.MainTitle.includes(action.payload)
+                        && item.category === state.listItems[state.onListNum - 1])
+            }
         }
     },
     extraReducers: (builder) => {
@@ -42,5 +77,5 @@ export const contentSlice = createSlice({
     }
 })
 
-export const { increaseItemAmount, changeCategory, changeOnListNum } = contentSlice.actions
+export const { increaseItemAmount, changeCategory, changeOnListNum, changeFilteredData, changeSlicedData, changeSearchedData } = contentSlice.actions
 export default contentSlice.reducer

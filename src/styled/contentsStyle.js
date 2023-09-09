@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-export const SearchBox = styled.div`
+export const SearchBox = styled.form`
     width: 1200px;
     height: 150px;
     padding: 45px 0;

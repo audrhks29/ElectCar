@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
-    keywords: null
+    keywords: null,
 }
 export const searchSlice = createSlice({
     name: 'search',
@@ -8,7 +8,8 @@ export const searchSlice = createSlice({
     reducers: {
         onChangeKeyword(state, action) {
             state.keywords = action.payload
-        }
+        },
+
     },
 })
 
