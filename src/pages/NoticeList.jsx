@@ -1,39 +1,20 @@
 import React, { memo, useEffect } from 'react';
-// import newsData from '../assets/newsData.json'
-import { useState } from 'react';
 import { Container, Paginate, Table } from '../styled/noticeListStyle';
 import { HiOutlineChevronDoubleLeft, HiOutlineChevronDoubleRight, HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi'
 import { Link } from 'react-router-dom';
 import NoticeTopPined from '../components/NoticeTopPined';
-import { useAxios } from '../hooks/useAxios';
+import { getNoticeData, goToPage, setInitialPagination, setSelectedData, setSlicedData } from '../store/modules/noticeSlice';
+import { useDispatch, useSelector } from 'react-redux';
 const NoticeList = () => {
-    const { state: newsData, error, loading } = useAxios("https://gist.githubusercontent.com/audrhks29/4369a59452ed3e8967052a7ac98686b5/raw/0cfe0663807f3aedcb658da3fadac1665e048444/newsData.json")
-    const [data, setData] = useState([newsData]);
+    const { noticeData, currentPage, arrayPageNumbers, slicedNoticeData } = useSelector(state => state.noticeR);
+    const dispatch = useDispatch()
     useEffect(() => {
-        setData(newsData)
-    }, [newsData])
-    const sortedData = [...data].sort((a, b) => b.id - a.id);
-    const pagePerData = 5;
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(Math.ceil(sortedData.length / pagePerData));
-    const handlePageClick = (pageNumber) => {
-        setCurrentPage(pageNumber);
-    };
-    const sortedDataPage = sortedData.slice((currentPage - 1) * pagePerData, currentPage * pagePerData);
-    const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1)
-    const gotoFirstPage = () => {
-        setCurrentPage(1);
-    }
-    const gotoLastPage = () => {
-        setCurrentPage(totalPages);
-    }
-    const gotoNextPage = () => {
-        if (currentPage < totalPages) { setCurrentPage(currentPage + 1); }
-    }
-    const gotoPreviousPage = () => {
-        if (currentPage > 1) { setCurrentPage(currentPage - 1); }
-    }
-    const lastPageItemCount = data.length % pagePerData;
+        dispatch(getNoticeData())
+    }, [])
+    useEffect(() => {
+        dispatch(setInitialPagination())
+        dispatch(setSlicedData())
+    }, [noticeData, currentPage])
     return (
         <Container>
             <div className="inner">
@@ -56,13 +37,13 @@ const NoticeList = () => {
                         </thead>
                         <tbody>
                             {
-                                sortedDataPage.map((item, index) => {
+                                slicedNoticeData && slicedNoticeData.map((item, index) => {
                                     const { id, title, date, hits } = item
                                     return (
                                         <tr key={index}>
                                             <td>{id}</td>
                                             <td><Link to={`/noticeList/${id}`}><strong>{title}</strong></Link></td>
-                                            <td onClick={() => onGO(id)}>{date}</td>
+                                            <td>{date}</td>
                                             <td>{hits}</td>
                                         </tr>
                                     )
@@ -72,19 +53,23 @@ const NoticeList = () => {
                     </Table>
                 </div>
                 <Paginate>
-                    <p><i><HiOutlineChevronDoubleLeft onClick={gotoFirstPage} /></i></p>
-                    <p><i><HiOutlineChevronLeft onClick={gotoPreviousPage} /></i></p>
+                    <p><i><HiOutlineChevronDoubleLeft onClick={() => dispatch(goToPage(1))} /></i></p>
+                    <p><i><HiOutlineChevronLeft onClick={() => dispatch(goToPage(currentPage - 1))} /></i></p>
                     {
-                        pageNumbers.map((number, index) => {
+                        arrayPageNumbers.map((number, index) => {
                             return (
-                                <p key={index} onClick={() => handlePageClick(number)} className={currentPage === number ? 'on' : ''}>
+                                <p
+                                    key={index}
+                                    onClick={() => dispatch(goToPage(number))}
+                                    className={currentPage === number ? 'on' : ''}
+                                >
                                     {number}
                                 </p>
                             )
                         })
                     }
-                    <p><i><HiOutlineChevronRight onClick={gotoNextPage} /></i></p>
-                    <p><i><HiOutlineChevronDoubleRight onClick={gotoLastPage} /></i></p>
+                    <p><i><HiOutlineChevronRight onClick={() => dispatch(goToPage(currentPage + 1))} /></i></p>
+                    <p><i><HiOutlineChevronDoubleRight onClick={() => dispatch(goToPage(arrayPageNumbers.length))} /></i></p>
                 </Paginate>
             </div>
         </Container >

@@ -4,15 +4,22 @@ import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper"
 import "swiper/scss"
 import "swiper/scss/navigation"
 import "swiper/scss/pagination"
-import dataList from '../assets/newsData.json'
 import { useParams } from 'react-router-dom';
 import { NoticeDetailList } from '../styled/noticeDetailStyle';
 import NoticeTopPined from '../components/NoticeTopPined';
+import { useSelector } from 'react-redux';
 const NoticeDetail = memo(() => {
+    const { noticeData } = useSelector(state => state.noticeR);
     const { noticeID } = useParams();
-    const parseID = parseInt(noticeID, 10)
-    const [data, setData] = useState(dataList[parseID - 1]);
-    const { title, date, img, desc } = data
+    const selectedData = noticeData.find(item => item.id === Number(noticeID));
+    // localStorage.setItem('selectedData', JSON.stringify(selectedData));
+
+    // // 데이터 검색
+    // const storedData = JSON.parse(localStorage.getItem('selectedData'));
+    console.log(`noticeID = ${noticeID}`);
+    console.log(`parseID = ${noticeID}`);
+    console.log(selectedData);
+    const { title, date, img, desc } = selectedData
     return (
         <NoticeDetailList>
             <div className="inner">
@@ -27,7 +34,9 @@ const NoticeDetail = memo(() => {
                     >
                         {
                             img.map((item, index) => (
-                                <SwiperSlide key={index}><img src={item} alt="" /></SwiperSlide>)
+                                <SwiperSlide key={index}>
+                                    <img src={item} alt="" />
+                                </SwiperSlide>)
                             )
                         }
                     </Swiper>
