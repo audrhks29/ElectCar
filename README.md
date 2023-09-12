@@ -1,9 +1,51 @@
-# ElectCar
-[React] 20230628 탐라는 전기차 홈페이지 클론코딩
+# [React] 20230705 도서등록 홈페이지
+## 1. 사용기술
+### 사용된 기술
+<img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white"> <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white"> <img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=Redux&logoColor=white"> <img src="https://img.shields.io/badge/Axios-5A29E4?style=flat-square&logo=Axios&logoColor=white"> <img src="https://img.shields.io/badge/styled_components-DB7093?style=flat-square&logo=styledcomponents&logoColor=white">
 
-<img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white"> <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black">
+### v1.3.0
+<img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=Redux&logoColor=white"> 사용
 
-## 코드수정
+### v1.2.1
+<img src="https://img.shields.io/badge/Axios-5A29E4?style=flat-square&logo=Axios&logoColor=white"> Hook 사용
+
+### v1.0.0
+<img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white"> <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white"> <img src="https://img.shields.io/badge/styled_components-DB7093?style=flat-square&logo=styledcomponents&logoColor=white">
+
+## 2. Version Update
+
+### v1.2.1
+1. popup창 Like 기능 추가
+2. Footer Logo 클릭시 Home으로 이동 추가
+3. 데이터 수정
+   - gist에 JSON파일 업로드
+   - <img src="https://img.shields.io/badge/Axios-5A29E4?style=flat-square&logo=Axios&logoColor=white"> 불러오기
+   - <img src="https://img.shields.io/badge/Axios-5A29E4?style=flat-square&logo=Axios&logoColor=white"> Hook 사용
+### v1.2.0
+1. 애니메이션 기능 추가
+   - 메뉴 클릭 시 Navigation
+   - Navigation Image
+   - Home Image
+2. NoticeList페이지 수정
+   - 새로고침 시 로고 사라짐 현상 수정
+   - NoticeList 로드 시 로고와 메뉴 색상이 바뀌지 않는 현상 수정
+3. 페이지 추가
+   - 이용약관
+   - 개인정보처리방침
+### v1.1.0
+1. content
+   - 검색창 위치 수정
+   - 검색 기능 버튼 클릭시 검색으로 수정
+   - 팝업 이미지 슬라이드 추가
+   - 더보기 추가
+   - Navigation 추가
+   - footer 추가
+2. noticeList 페이지 추가
+3. NoticeDetail 페이지 추가
+4. 로고 클릭 시 main화면 이동 추가
+### v1.0.0
+   탐라는 전기차 홈페이지
+## 3. 코드수정
 ### 오류사항
 - vite에서 BrowserRouter 사용하여 깃허브페이지로 배포시, 페이지가 로드되지 않는 문제 발생
 - `./images/gnb_slider_1.jpg`와 같이 이미지 경로를 기입 시에 로드되는 페이지와 로드되지 않는 페이지가 생김
